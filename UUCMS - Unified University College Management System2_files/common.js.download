@@ -1,0 +1,191 @@
+﻿
+function CallPostMethod(MethodName, dataString, func, args) {
+    try {
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: MethodName,
+                data: dataString,
+                contentType: "application/json; charset=utf-8",
+                success: function (res) {
+                    if (func != "") {
+                        args.splice(0, 0, res);
+                        var fn = window[func];
+                        if (typeof fn === "function")
+                            fn.apply(null, args);
+                    }
+                    return res;
+                },
+                failure: function (response) {
+                    return 'failed';
+                },
+                error: function (request, message, error) {
+                    if (request && request.status === 401) {
+                    }
+                    else if (request && request.status === 400 && request.responseJSON) {
+                    }
+                    else {
+                    }
+                    return 'failed';
+                }
+            });
+        });
+    } catch (e) {
+        debugger;
+    }
+    return false;
+}
+
+/*Search functionality*/
+function SearchCriteria() {
+    var fromDate = new Date($('#fromDate').val());
+    var toDate = new Date($('#toDate').val());
+    if (toDate.getTime() < fromDate.getTime()) {
+        bootbox.alert("To Date must be equal or greater than From Date..");
+        setInputDate("#fromDate");
+        setInputDate("#toDate");
+        return null;
+    }
+    var criterias = {};
+    criterias.searchnumber = $('#searchno').val();
+    criterias.fromDate = $('#fromDate').val();
+    criterias.toDate = $('#toDate').val();
+    criterias.type = $('#radiobutton input[type="radio"][name ="searchnumber"]:checked').val();
+    criterias.BillStatus = $('#billStatus').val();
+    return criterias;
+};
+
+/*Setting sys date by default functionality*/
+function setInputDate(_id) {
+    var _dat = document.querySelector(_id);
+    var hoy = new Date(),
+        d = hoy.getDate(),
+        m = hoy.getMonth() + 1,
+        y = hoy.getFullYear(),
+        data;
+
+    if (d < 10) {
+        d = "0" + d;
+    };
+    if (m < 10) {
+        m = "0" + m;
+    };
+
+    data = y + "-" + m + "-" + d;
+    _dat.value = data;
+};
+
+/*Reset filter functionality*/
+function resetfilter1() {
+    $('#searchno').val("");
+    setInputDate("#fromDate");
+    setInputDate("#toDate");
+    $('#radiobutton input[type="radio"][name ="searchnumber"]:checked').prop('checked', false);
+    document.getElementById('InWard').checked = true;
+};
+
+/*Table pagination functionality*/
+function pagination(tblId) {
+    $(tblId).DataTable({
+        searching: false,
+        pagingType: 'full_numbers',
+        pageLength: 100,
+        lengthMenu: [50, 100, 500, 1000],
+    });
+}
+
+/*Amount conversion in words functionality*/
+function AmtinWords(val) {
+    var str = '';
+    if (val == 0) {
+        str += 'Zero Rupee Only';
+        return str;
+    }
+    var spliVal = parseFloat(val).toFixed(2).split('.');
+    var num = spliVal[0];
+    var frac = spliVal[1];
+    var a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ',
+        'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
+    var b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+    if ((num = num.toString()).length > 9) return 'Overflow Conversation';
+    n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+    n1 = ('00' + frac.toString()).substr(-2).match(/^(\d{2})$/);
+    if (!n) return;
+    if (n[0] == 0) {
+        str += (n1[1] != 0) ? (a[Number(n1[1])] || b[n1[1][0]] + ' ' + a[n1[1][1]]) + 'Paisa Only' : '';
+        return str;
+    }
+    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'Crore ' : '';
+    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'Lakh ' : '';
+    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'Thousand ' : '';
+    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'Hundred ' : '';
+    if (str == '') {
+        str += (n[5] == 1) ? 'One Rupee' : '';
+        if (str != '') {
+            str += (n1[1] != 0) ? ' And ' + (a[Number(n1[1])] || b[n1[1][0]] + ' ' + a[n1[1][1]]) + 'Paisa' : '';
+            return str + ' Only';
+        }
+    }
+    str += (n[5] != 0) ? ((str != '') ? 'And ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'Rupees' : 'Rupees';
+    str += (n1[1] != 0) ? ' And ' + (a[Number(n1[1])] || b[n1[1][0]] + ' ' + a[n1[1][1]]) + 'Paisa' : '';
+    return str + ' Only';
+}
+
+/*Set maximun date in calender*/
+function setMaxDate() {
+    var todayDate = new Date();
+    var day = todayDate.getDate();
+    var month = todayDate.getMonth() + 1;
+    var year = todayDate.getFullYear();
+    todayDate = year + "-" + (month < 10 ? "0" + month : month) + "-" + (day < 10 ? "0" + day : day);
+    $("#fromDate").prop('max', todayDate);
+    $("#toDate").prop('max', todayDate);
+    setToMinDate();
+    //$("#toDate").prop('min', todayDate);
+    /*return todayDate;*/
+}
+
+/*Set minimun date for Todate in caender*/
+function setToMinDate() {
+    $("#toDate").prop('min', $('#fromDate').val());
+}
+
+/*Keyup function on search textbox*/
+function searchBtnValidation() {
+    if ($("#searchno").val() != "") {
+        $("#fromDate").prop('disabled', true);
+        $("#toDate").prop('disabled', true);
+        $("#searchfilters").prop('disabled', true);
+        if ($("#searchno").val().length == 6) {
+            $("#searchfilters").prop('disabled', false);
+        }
+    }
+    else {
+        $("#fromDate").prop('disabled', false);
+        $("#toDate").prop('disabled', false);
+        $("#searchfilters").prop('disabled', false);
+    }
+}
+
+function pageRefresh() {
+    countChars();
+    countCharsKan();
+}
+
+function countChars() {
+    var el_t = document.getElementById("descEng");
+    var el_c = document.getElementById("charNum");
+    el_c.innerHTML = el_t.value.length;
+    el_t.oninput = function () {
+        document.getElementById("charNum").innerHTML = this.value.length;
+    };
+}
+
+function countCharsKan() {
+    var el_t = document.getElementById("descKan");
+    var el_c = document.getElementById("charNumKan");
+    el_c.innerHTML = el_t.value.length;
+    el_t.oninput = function () {
+        document.getElementById("charNumKan").innerHTML = this.value.length;
+    };
+}

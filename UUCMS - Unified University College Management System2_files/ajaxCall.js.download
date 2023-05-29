@@ -1,0 +1,58 @@
+﻿var ajaxCallParams = {};
+var ajaxDataParams = {};
+
+
+// General function for all ajax calls
+function ajaxCall(callParams, dataParams, successCallback, errorCallBack) {
+    
+    try {
+        $.ajax({
+            type: callParams.Type,
+            url: callParams.Url,
+            //quietMillis: 100,
+            dataType: callParams.DataType,
+            data: dataParams,
+            //cache: true,
+            success: function (response) {
+                successCallback(response);
+            },
+            error: function (response) {
+                debugger;
+                errorCallBack(response);
+            }
+        });
+    }
+    catch (err) {
+        errorCallBack(err);
+    }
+
+
+    
+    
+}
+
+function ConfirmDelete(message, ajaxCallParams, ajaxDataParams, successCallbackDeleteNotification, errorCallBack) {
+    var retVal = "";
+    bootbox.confirm({
+        message: message,
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            debugger;
+            if (result) {
+
+                ajaxCall(ajaxCallParams, ajaxDataParams, successCallbackDeleteNotification, errorCallBack);
+            }
+            
+        }
+    });
+    return retVal;
+}
