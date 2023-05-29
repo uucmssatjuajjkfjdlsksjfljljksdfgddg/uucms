@@ -1,0 +1,317 @@
+
+/* styles by anusha ..... start */
+body * {
+    font-family: "Segoe UI";
+}
+
+.form-control {
+    min-height: 40px;
+}
+
+.primary-button {
+    background-color: rgb(255, 229, 20);
+}
+
+.bd-highlight {
+    background-color: rgba(86,61,124,.15);
+    border: 1px solid rgba(86,61,124,.15);
+}
+
+.bg-lightgrey {
+    background-color: rgba(86,61,124,.15);
+    border: 1px solid rgba(86,61,124,.15);
+}
+
+#payment-options .nav-link.active, #payment-options .show > .nav-link {
+    color: #000;
+    background-color: rgba(86,61,124,.15);
+}
+
+#payment-options .nav-link {
+    color: #000;
+    background-color: rgba(217, 213, 223, 0.15);
+    padding: 15px;
+    text-align: center;
+}
+
+.options-section {
+    border: 1px solid rgba(86,61,124,.15);
+    background-color: rgba(217, 213, 223, 0.15);
+    padding: 15px;
+}
+
+/*table {
+    text-align: center;
+}*/
+
+.details-section {
+    padding: 10px;
+}
+
+.mt-minus-25 {
+    margin-top: -25px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.danger-text {
+    color: red;
+}
+
+.bg-lightblue {
+    background-color: rgb(180, 199, 231);
+}
+
+.bg-lightorange {
+    background-color: rgb(255 163 119);
+    
+}
+
+.bg-lightgreen {
+    background-color: rgb(197, 224, 180);
+}
+
+.ml-35 {
+    margin-left: 35px;
+}
+
+.mt-100 {
+    margin-top: 100px;
+}
+
+.mt-36 {
+    margin-top: 36px;
+}
+
+.pad-5 {
+    padding: 5px;
+}
+
+/*.dark-border {
+    border: 1px solid #000;
+}*/
+
+.span-item {
+    padding: 1px 17px 10px 18px;
+    border: 1px solid #000;
+}
+
+
+
+.w-235 {
+    width: 235px;
+}
+
+.w-250 {
+    width: 250px;
+}
+
+.options-section {
+    padding: 10px;
+}
+
+.setup-section {
+    padding: 20px;
+}
+
+.details-box {
+    border: 1px solid #eee;
+    padding: 5px 15px;
+    box-shadow: 1px 1px #e4e4e4;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.application-formpromptbox {
+    border: 1px solid #eee;
+    padding: 15px 15px;
+    box-shadow: 1px 1px #e4e4e4;
+    margin: 10px auto;
+    width: 75%;
+}
+
+.application-form {
+    border: 1px solid #000;
+    padding: 15px 15px;
+    box-shadow: 1px 1px #e4e4e4;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.registration-form {
+    /*border: 1px solid #000;*/
+    padding: 0px 15px;
+    /*box-shadow: 1px 1px #e4e4e4;*/
+    margin: 10px 0;
+    width: 100%;
+}
+
+.personal-details-box {
+    border: 1px solid #000;
+    padding: 15px 15px;
+    box-shadow: 1px 1px #e4e4e4;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.reset-pwd-box {
+    border: 1px solid #eee;
+    padding: 15px 15px;
+    box-shadow: 1px 1px #e4e4e4;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.bottom-border {
+    border-bottom: 2px solid black;
+}
+
+.reject-comment-box {
+    padding: 22px 20px 45px 20px;
+    border: 1px solid #000;
+}
+
+.div-height {
+    height: 200px;
+}
+
+
+
+#main-heading {
+    background-color: rgb(190 218 234);
+}
+
+#sub-heading th {
+    background-color: rgb(197, 224, 180);
+}
+/* #navigation .navbar-toggler-icon{
+    background-color: black;
+} */
+.address-box, .matrix-box {
+    border: 1px solid #000;
+}
+
+.form-box {
+    padding: 15px;
+}
+
+.percentage-form-box {
+    padding: 27px;
+}
+
+.span-heading {
+    padding: 5px 25px 15px 31px;
+    border: 1px solid #000;
+}
+
+.image-holder {
+    width: 200px;
+    height: 200px;
+}
+
+.modal.large-modal {
+    width: 1140px;
+}
+
+.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+    border: 1px solid #000;
+}
+
+
+#calendar-events-table th, #change-seat th, #priority-selection th {
+    background-color: #58a0ec;
+    color: #fff;
+    vertical-align: middle;
+}
+
+#admission-personal-details th {
+    background-color: rgb(180, 199, 231);
+}
+
+#fee-matrix th {
+    background-color: #58a0ec;
+    color: #fff;
+    text-align: left;
+}
+
+#fee-matrix tbody {
+    background: rgb(231, 230, 230);
+    text-align: left;
+}
+
+.highlight td {
+    border-bottom: 1px solid transparent;
+}
+
+
+
+.login-section {
+    /* position: relative; */
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.login-box {
+    padding: 20px;
+    border: 2px solid black;
+}
+
+.custom_style {
+    background-image: url(./../Images/1.jpg);
+    text-align: center;
+    border: none;
+    width: 195px;
+    height: 37px;
+}
+
+.col-form-label {
+    font-weight: normal;
+    text-align: left;
+    /* font-size: 14px; */
+}
+
+.col-form-label {
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+    margin-bottom: 0;
+    font-size: 14px !important;
+    line-height: 1.5;
+}
+
+.form-check-label {
+    font-size: 13px !important;
+}
+.btn-orange {
+    background: #fd7e14;
+    color: #fff;
+    
+}
+/* mobile view */
+@media (max-width: 900px) {
+    .mt-minus-25 {
+        margin-top: 0px;
+    }
+}
+/* styles by anusha ..... end */
+
+.card-header {
+    background: rgb(193 212 232 / 25%);
+}
+
+select {
+    width: 100%;
+}
+span.link {
+    display: inline; /* the default for span */
+    width: 100px;
+    height: 100px;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
